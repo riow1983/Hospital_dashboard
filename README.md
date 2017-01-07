@@ -19,7 +19,7 @@ main.py
 As you can see, the version of these files is 0.12.2, which must be equal to your Bokeh's version. 
 So please change the number to fit to you.
 And of course these are for only the web page interface. The database interactions are not concerned here and the 
-plotted data(graph) is just sumple.
+plotted data(graph) is just sample.
 
 Future plan:
 • Put pandas.DataFrame(table) into the page with csv download botton.
