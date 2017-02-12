@@ -1,3 +1,20 @@
+# Hospital_dashboard_ver.0.2
+
+Added:
+  --pandas.DataFrame
+  --connection to PostgreSQL
+  --ajax for automatic update
+  
+Improved:
+  --html layouts.
+
+Required versions: 
+  --Bokeh: 0.12.2 (Please do not upgrade over 0.12.2.)
+  --PostgreSQL: 9.4
+
+
+
+
 # Hospital_dashboard_ver.0.1
 
 I created the interface of hospital dashboard which shows clinical data on the web page.
