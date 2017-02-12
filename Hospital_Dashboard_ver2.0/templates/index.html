@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>main dashboard</title>
+
+
+
+
+<link rel="stylesheet" type="text/css" href={{ url_for('static', filename='bokeh-0.12.2.min.css') }}>
+
+<link rel="stylesheet" type="text/css" href={{ url_for('static', filename='bokeh-widgets-0.12.2.min.css') }}>
+
+<link rel="stylesheet" type="text/css" href={{ url_for('static', filename='tab.css') }}>
+
+<link rel="stylesheet" type="text/css" href={{ url_for('static', filename='nav.css') }}>
+
+
+
+<script type="text/javascript" src={{ url_for('static', filename='bokeh-0.12.2.min.js') }}></script>
+
+<script type="text/javascript" src={{ url_for('static', filename='bokeh-widgets-0.12.2.min.js') }}></script>
+
+<script type="text/javascript" src={{ url_for('static', filename='jquery-3.1.1.min.js') }}></script>
+
+<script type="text/javascript" src={{ url_for('static', filename='tab.js') }}></script>
+
+<script type="text/javascript" src={{ url_for('static', filename='nav.js') }}></script>
+
+ 
+
+
+    </head>
+
+    <body  id="myPlot">
+
+
+
+	
+
+    <div id="mySidenav" class="sidenav">
+     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+     <a href="#main">メインページ</a>
+     <a href="#link">リンク集</a>
+     <a href="#other">その他</a>
+     <a href="#form">お問合せ</a>
+    </div>
+    
+    
+
+
+    <div id="main">
+     <h1>○○病院ダッシュボード</h1>
+     <span onclick="openNav()"><<<サイドメニュー表示</span>
+
+     <ul class="tab">
+     <li><a href="javascript:void(0)" class="tablinks" onclick="openBoard(event, '空床情報')" id="defaultOpen")">空床情報</a>
+        
+     </li>
+     <li><a href="javascript:void(0)" class="tablinks" onclick="openBoard(event, '処置件数')">処置件数</a></li>
+     <li><a href="javascript:void(0)" class="tablinks" onclick="openBoard(event, '診療科別患者数')">診療科別患者数</a></li>
+     </ul>
+
+     <div id="空床情報" class="tabcontent">
+         <p>病棟別空床件数をリアルタイム表示</p>
+          <div style="float: left;">
+         {{ script|safe }}
+　　　    {{ div|safe }}
+         </div>
+         <div style="display: inline-block;">
+         病床一覧
+         {{ script2|safe}}
+         {{ div2|safe}}
+    　　 </div>
+     </div>
+
+     <div id="処置件数" class="tabcontent">
+         <p>部署別処置件数をリアルタイム表示</p> 
+     </div>
+
+     <div id="診療科別患者数" class="tabcontent">
+         <p>診療科別患者数をリアルタイム表示</p>
+     </div>
+
+
+    </div>
+	
+
+
+	<script>
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+    </script>
+   
+
+    <script type="text/javascript">
+    setInterval(function() {
+      $.ajax({
+        url: "/",
+        type: "GET",
+        dataType: "html",
+        cache: false,
+        success: function (data) {$('#myPlot').html(data);},
+        });
+    }, 60*1000); // Repeat interval is in milliseconds
+    </script>
+
+    </body>
+</html>
